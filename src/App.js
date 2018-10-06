@@ -75,7 +75,7 @@ class App extends Component {
 			<div style={{textAlign: "center", marginBottom: "2em", padding: "1.5em", backgroundColor: "#ffffff"}}>
 			<div style={{display: "flex", flexDirection: "row", alignContent: "center"}}>
 			<div style={{width: "2em", height: "2em", borderRadius: "2em", overflow: "hidden"}}>
-			<img style={{width: "2em", height: "2em"}} src="https://pbs.twimg.com/profile_images/716641091311697920/hFFVBhFe_400x400.jpg" />
+			<img style={{width: "2em", height: "2em"}} src={(!e.ad) ? "https://pbs.twimg.com/profile_images/716641091311697920/hFFVBhFe_400x400.jpg" : "https://pbs.twimg.com/profile_images/770467680012890112/kSz1jtnn_400x400.jpg"} />
 			</div>
 			<div style={{marginLeft: "0.5em", textAlign: "left"}}>
 			{
