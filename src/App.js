@@ -33,22 +33,22 @@ let content = [
 // replace sources with new images and also remove "ads"
 let content2 = [
     {
-	"description": "Check out my drink!",
+	"description": "Somebody!",
 	"image": yev,
 	"ad": false
     },
     {
-	"description": "Open your happiness with Coca Cola",
+	"description": "Once",
 	"image": happiness,
 	"ad": true
     },
     {
-	"description": "Look at this sexy motherfucker",
+	"description": "Told",
 	"image": gregg,
 	"ad": false
     },
     {
-	"description": "Drink your Coca Cola with Kate",
+	"description": "Me",
 	"image": kate,
 	"ad": true
     }
@@ -57,8 +57,15 @@ let content2 = [
 class App extends Component {
     constructor(props) {
 	super(props);
-	this.state = {content: content}
+	this.state = {ads: true, content: content}
     }
+
+    _changeAds = () => {
+	this.setState({
+	    content: (this.state.ads) ? content2 : content,
+	    ads: !this.state.ads
+	});
+    };
 
     render() {
 	const unit = 500;
@@ -68,6 +75,7 @@ class App extends Component {
 	    <div style={{backgroundColor: "#ffffff", textAlign: "center"}}>
 	    <h1 style={{margin: 0}}>Generic Social Media Platform</h1>
 	    </div>
+	    <div onClick={() => {this._changeAds()}} style={{position: "absolute", top: "3.5em", right: "3em", borderRadius: "1em", padding: "1em", backgroundColor: "white"}}>Click me!</div>
 	    <div style={{marginTop: "5em"}}>
 	    {
 		this.state.content.map((e) => (
