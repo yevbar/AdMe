@@ -5,15 +5,14 @@ import happiness from './media/happiness.jpg';
 import kate from './media/kate.jpg';
 import yev from './media/yev.jpg';
 import gregg from './media/lebron.jpeg';
-import yev2 from './media/cocacola.png';
+import yev2 from './media/newcoke.png';
 import gregg2 from './media/pellegrino.png'
 import sara from './media/sara.jpg';
-import sara2 from './media/cocacola.png';
+import sara2 from './media/coke.png';
 // import new images here
 
 // a software pixel (like height: 100px) is not equivalent to a pixel in an image or resolution so we're introducing a constant multiplier for that
 const pixelRatio = window.devicePixelRatio; 
-
 let content = [
     
     {
@@ -66,7 +65,7 @@ let content2 = [
 	"ad": true
     },
     {
-	"description": "An attendee working hard on finishing her hack",
+	"description": "An attendee hacking with her Coke",
 	"image": sara,
 	"ad": false,
 	"overlay": sara2,
@@ -96,18 +95,28 @@ let content2 = [
     // include the aforementioned non-ad pics
 ];
 
+/* 
+<div onClick={() => {this._changeAds()}} style={{position: "absolute", top: "3.5em", right: "3em", borderRadius: "1em", padding: "1em", backgroundColor: "white"}}>Click me!</div>
+*/
+
 class App extends Component {
     constructor(props) {
 	super(props);
 	this.state = {ads: false, content: content2}
     }
 
-    _changeAds = () => {
+    _changeAds() {
 	this.setState({
 	    content: (this.state.ads) ? content2 : content,
 	    ads: !this.state.ads
 	});
     };
+
+    componentDidMount() {
+	setInterval(() => this._changeAds() , 3000);
+    }
+
+    
 
     render() {
 	const unit = 500;
@@ -121,7 +130,7 @@ class App extends Component {
 		    <h1 style={{margin: 0}}>Generic Social Media Platform</h1>
 		    </div> : null
 	    }
-	    <div onClick={() => {this._changeAds()}} style={{position: "absolute", top: "3.5em", right: "3em", borderRadius: "1em", padding: "1em", backgroundColor: "white"}}>Click me!</div>
+	    
 	    <div style={{marginTop: "5em"}}>
 	    {
 		this.state.content.map((e, index) => (
