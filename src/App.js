@@ -4,23 +4,23 @@ import './App.css';
 import happiness from './media/happiness.png';
 import kate from './media/kate.jpg';
 import yev from './media/yev.jpg';
-import gregg from './media/gregg.jpg';
+import gregg from './media/lebron.jpeg';
+import yev2 from './media/sprite.png';
+import gregg2 from './media/pellegrino.png'
 // import new images here
 
+// a software pixel (like height: 100px) is not equivalent to a pixel in an image or resolution so we're introducing a constant multiplier for that
+const pixelRatio = window.devicePixelRatio;
+
 let content = [
-    {
-	"description": "Check out my drink!",
-	"image": yev,
-	"ad": false
-    },
     {
 	"description": "Open your happiness with Coca Cola",
 	"image": happiness,
 	"ad": true
     },
     {
-	"description": "Look at this sexy motherfucker",
-	"image": gregg,
+	"description": "Check out my drink!",
+	"image": yev,
 	"ad": false
     },
     {
@@ -34,15 +34,31 @@ let content = [
 // replace sources with new images and also remove "ads"
 let content2 = [
     {
-	"description": "Somebody!",
+	"description": "Wow, I'm an ad!",
 	"image": yev,
+	"overlay": yev2,
+	// The second value is half the width of the image
+	"overlayCenterX": (195.67308044433594 / pixelRatio) + ((28.240724563598633 / pixelRatio)*2.7)/4,
+	// The second value is half the height of the image
+	"overlayCenterY": (115.63461303710938 / pixelRatio) - ((78.2503433227539 / pixelRatio)*1.5)/4,
+	"overlayWidth": (28.240724563598633 / pixelRatio)*3.1,
+	"overlayHeight": (78.2503433227539 / pixelRatio)*1.4,
+	"overlayAngle": 90 + -78.69007110595703,
 	"ad": false
-    },
+    }/*,
     {
-	"description": "Told",
+	"description": "I'm now the face of a brand I love",
 	"image": gregg,
+	"overlay": gregg2,
+	// The second value is half the width of the image
+	"overlayCenterX": (100 / pixelRatio) - (100 / pixelRatio)/2,
+	// The second value is half the height of the image
+	"overlayCenterY": (100 / pixelRatio) - (100 / pixelRatio)/2,
+	"overlayWidth": (100 / pixelRatio)*1.5,
+	"overlayHeight": (100 / pixelRatio),
+	"overlayAngle": 90 + -80,
 	"ad": false
-    }
+    }*/
     // include the aforementioned non-ad pics
 ];
 
@@ -74,12 +90,12 @@ class App extends Component {
 	    <div onClick={() => {this._changeAds()}} style={{position: "absolute", top: "3.5em", right: "3em", borderRadius: "1em", padding: "1em", backgroundColor: "white"}}>Click me!</div>
 	    <div style={{marginTop: "5em"}}>
 	    {
-		this.state.content.map((e) => (
-			<div style={{display: "flex", justifyContent: "center", border: "1px solid #E1E8ED"}}>
+		this.state.content.map((e, index) => (
+			<div key={index} style={{display: "flex", justifyContent: "center", border: "1px solid #E1E8ED"}}>
 			<div style={{textAlign: "center", marginBottom: "2em", padding: "1.5em", backgroundColor: "#ffffff"}}>
 			<div style={{display: "flex", flexDirection: "row", alignContent: "center"}}>
 			<div style={{width: "2em", height: "2em", borderRadius: "2em", overflow: "hidden"}}>
-			<img style={{width: "2em", height: "2em"}} src={(!e.ad) ? "https://pbs.twimg.com/profile_images/716641091311697920/hFFVBhFe_400x400.jpg" : "https://pbs.twimg.com/profile_images/770467680012890112/kSz1jtnn_400x400.jpg"} />
+			<img alt="profile" style={{width: "2em", height: "2em"}} src={(!e.ad) ? "https://pbs.twimg.com/profile_images/716641091311697920/hFFVBhFe_400x400.jpg" : "https://pbs.twimg.com/profile_images/770467680012890112/kSz1jtnn_400x400.jpg"} />
 			</div>
 			<div style={{marginLeft: "0.5em", textAlign: "left"}}>
 			{
@@ -91,7 +107,10 @@ class App extends Component {
 			<div style={{width: unit, height: unit, marginTop: "2em", marginRight:"auto", marginLeft: "auto"}}>
 			<Tilt className="tilt" options={{max: 25}}>
 			<div style={{width: unit, height: unit, borderRadius: "5px", border: "1px solid #E1E8ED", overflow: "hidden"}}>
-			<img src={e.image} style={{width: unit, height: "auto"}}/>
+			<img alt="content" src={e.image} style={{width: unit, height: "auto"}}/>
+			{
+			    !this.state.ads ? <img alt="overlayed-content" src={e.overlay} style={{width: e.overlayWidth, height: e.overlayHeight, position: "absolute", left: e.overlayCenterX, top: e.overlayCenterY, transform: "rotate(" + e.overlayAngle + "deg)"}}/> : null
+			}
 			</div>
 			</Tilt>
 			</div>
