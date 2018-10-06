@@ -28,6 +28,7 @@ let content = [
 	"image": kate,
 	"ad": true
     }
+    // include two more regular non-ad pics here
 ];
 
 // replace sources with new images and also remove "ads"
@@ -38,20 +39,11 @@ let content2 = [
 	"ad": false
     },
     {
-	"description": "Once",
-	"image": happiness,
-	"ad": true
-    },
-    {
 	"description": "Told",
 	"image": gregg,
 	"ad": false
-    },
-    {
-	"description": "Me",
-	"image": kate,
-	"ad": true
     }
+    // include the aforementioned non-ad pics
 ];
 
 class App extends Component {
