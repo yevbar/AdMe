@@ -69,12 +69,16 @@ class App extends Component {
 
     render() {
 	const unit = 500;
+	const name = false;
 	
     return (
 	    <div className="App" style={{}}>
-	    <div style={{backgroundColor: "#ffffff", textAlign: "center"}}>
-	    <h1 style={{margin: 0}}>Generic Social Media Platform</h1>
-	    </div>
+	    {
+		(name) ? 
+		    <div style={{backgroundColor: "#ffffff", textAlign: "center"}}>
+		    <h1 style={{margin: 0}}>Generic Social Media Platform</h1>
+		    </div> : null
+	    }
 	    <div onClick={() => {this._changeAds()}} style={{position: "absolute", top: "3.5em", right: "3em", borderRadius: "1em", padding: "1em", backgroundColor: "white"}}>Click me!</div>
 	    <div style={{marginTop: "5em"}}>
 	    {
