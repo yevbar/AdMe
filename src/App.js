@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Tilt from 'react-tilt';
 import './App.css';
-import happiness from './media/happiness.png';
+import happiness from './media/happiness.jpg';
 import kate from './media/kate.jpg';
 import yev from './media/yev.jpg';
 import gregg from './media/lebron.jpeg';
-import yev2 from './media/sprite.png';
+import yev2 from './media/cocacola.png';
 import gregg2 from './media/pellegrino.png'
 // import new images here
 
@@ -14,7 +14,7 @@ const pixelRatio = window.devicePixelRatio;
 
 let content = [
     {
-	"description": "Open your happiness with Coca Cola",
+	"description": "It's nice and sunny today!",
 	"image": happiness,
 	"ad": true
     },
@@ -24,7 +24,7 @@ let content = [
 	"ad": false
     },
     {
-	"description": "Drink your Coca Cola with Kate",
+	"description": "A team working on their pitch and presentation.",
 	"image": kate,
 	"ad": true
     }
@@ -38,12 +38,12 @@ let content2 = [
 	"image": yev,
 	"overlay": yev2,
 	// The second value is half the width of the image
-	"overlayCenterX": (195.67308044433594 / pixelRatio) + ((28.240724563598633 / pixelRatio)*2.7)/4,
+	"overlayCenterX": (195.67308044433594 / pixelRatio) + ((28.240724563598633 / pixelRatio)*2.7)/1.9,
 	// The second value is half the height of the image
-	"overlayCenterY": (115.63461303710938 / pixelRatio) - ((78.2503433227539 / pixelRatio)*1.5)/4,
-	"overlayWidth": (28.240724563598633 / pixelRatio)*3.1,
+	"overlayCenterY": (115.63461303710938 / pixelRatio) - ((78.2503433227539 / pixelRatio)*1.5)/6,
+	"overlayWidth": (28.240724563598633 / pixelRatio)*1.35,
 	"overlayHeight": (78.2503433227539 / pixelRatio)*1.4,
-	"overlayAngle": 90 + -78.69007110595703,
+	"overlayAngle": 90 + -80,
 	"ad": false
     }/*,
     {
@@ -95,12 +95,10 @@ class App extends Component {
 			<div style={{textAlign: "center", marginBottom: "2em", padding: "1.5em", backgroundColor: "#ffffff"}}>
 			<div style={{display: "flex", flexDirection: "row", alignContent: "center"}}>
 			<div style={{width: "2em", height: "2em", borderRadius: "2em", overflow: "hidden"}}>
-			<img alt="profile" style={{width: "2em", height: "2em"}} src={(!e.ad) ? "https://pbs.twimg.com/profile_images/716641091311697920/hFFVBhFe_400x400.jpg" : "https://pbs.twimg.com/profile_images/770467680012890112/kSz1jtnn_400x400.jpg"} />
+			<img alt="profile" style={{width: "2em", height: "2em"}} src="https://pbs.twimg.com/profile_images/716641091311697920/hFFVBhFe_400x400.jpg"/>
 			</div>
 			<div style={{marginLeft: "0.5em", textAlign: "left"}}>
-			{
-			    (!e.ad) ? <div><span>Y Combinator</span><span style={{marginLeft: "0.25em", color: "#657786"}}>@ycombinator</span></div> : <div><span>Coca Cola</span><span style={{marginLeft: "0.25em", color: "#657786"}}>@CocaCola</span></div>
-			}
+			<div><span>Y Combinator</span><span style={{marginLeft: "0.25em", color: "#657786"}}>@ycombinator</span></div>
 			<span style={{marginTop: "0.25em"}}>{e.description}</span>
 			</div>
 			</div>
