@@ -7,12 +7,15 @@ import yev from './media/yev.jpg';
 import gregg from './media/lebron.jpeg';
 import yev2 from './media/cocacola.png';
 import gregg2 from './media/pellegrino.png'
+import sara from './media/sara.jpg';
+import sara2 from './media/cocacola.png';
 // import new images here
 
 // a software pixel (like height: 100px) is not equivalent to a pixel in an image or resolution so we're introducing a constant multiplier for that
-const pixelRatio = window.devicePixelRatio;
+const pixelRatio = window.devicePixelRatio; 
 
 let content = [
+    
     {
 	"description": "It's nice and sunny today!",
 	"image": happiness,
@@ -27,12 +30,23 @@ let content = [
 	"description": "A team working on their pitch and presentation.",
 	"image": kate,
 	"ad": true
+    },
+    {
+	"description": "An attendee working hard on finishing her hack",
+	"image": sara,
+	"ad": false
     }
     // include two more regular non-ad pics here
 ];
 
 // replace sources with new images and also remove "ads"
 let content2 = [
+    
+    {
+	"description": "It's nice and sunny today!",
+	"image": happiness,
+	"ad": true
+    },
     {
 	"description": "Wow, I'm an ad!",
 	"image": yev,
@@ -45,7 +59,27 @@ let content2 = [
 	"overlayHeight": (78.2503433227539 / pixelRatio)*1.4,
 	"overlayAngle": 90 + -80,
 	"ad": false
-    }/*,
+    },
+    {
+	"description": "A team working on their pitch and presentation.",
+	"image": kate,
+	"ad": true
+    },
+    {
+	"description": "An attendee working hard on finishing her hack",
+	"image": sara,
+	"ad": false,
+	"overlay": sara2,
+	// The second value is half the width of the image
+	"overlayCenterX": (253.5 / pixelRatio) + ((28.240724563598633 / pixelRatio)*2.7)/1.25,
+	// The second value is half the height of the image
+	"overlayCenterY": (250.5 / pixelRatio),// - ((78.2503433227539 / pixelRatio)*1.5)/2,
+	"overlayWidth": (23 / pixelRatio)*1.375,
+	"overlayHeight": (89 / pixelRatio)*1.4,
+	"overlayAngle": 90 - 91,
+	"ad": false
+    }
+    /*,
     {
 	"description": "I'm now the face of a brand I love",
 	"image": gregg,
@@ -65,7 +99,7 @@ let content2 = [
 class App extends Component {
     constructor(props) {
 	super(props);
-	this.state = {ads: true, content: content}
+	this.state = {ads: false, content: content2}
     }
 
     _changeAds = () => {
@@ -107,7 +141,7 @@ class App extends Component {
 			<div style={{width: unit, height: unit, borderRadius: "5px", border: "1px solid #E1E8ED", overflow: "hidden"}}>
 			<img alt="content" src={e.image} style={{width: unit, height: "auto"}}/>
 			{
-			    !this.state.ads ? <img alt="overlayed-content" src={e.overlay} style={{width: e.overlayWidth, height: e.overlayHeight, position: "absolute", left: e.overlayCenterX, top: e.overlayCenterY, transform: "rotate(" + e.overlayAngle + "deg)"}}/> : null
+			    !this.state.ads && e.overlay ? <img alt="overlayed-content" src={e.overlay} style={{width: e.overlayWidth, height: e.overlayHeight, position: "absolute", left: e.overlayCenterX, top: e.overlayCenterY, transform: "rotate(" + e.overlayAngle + "deg)"}}/> : null
 			}
 			</div>
 			</Tilt>
